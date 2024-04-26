@@ -1,31 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 function Home() {
-    const [count, setCount] = useState(0)
 
-    const [data, setData] = useState(0);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleCount = () => {
-
-        setCount(count + 1)
+    const handleForm = (e) => {
+        e.preventDefault();
+        console.log("email", email, "password", password)
+        setEmail("")
+        setPassword("")
     }
 
-    useEffect(() => {
-        fetch("https://fakestoreapi.com/products")
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data)
-                setData(data)
-            });
-    }, []);
-
+    function bajarangBali(val, val1) {
+        return console.log("jai shree", val , val1)
+    }
 
 
 
     return <>
-        <h1>Home</h1>
-        <h1>{count}</h1>
-        <button onClick={handleCount} >Count</button>
+        <h1>Counter</h1>
+
+        <form onSubmit={handleForm} >
+
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="enter email" />
+
+            <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" placeholder="password" />
+
+            <button>Login</button>
+
+            <button onClick={() => bajarangBali("ram","shyam")} >bajarang</button>
+        </form>
 
 
     </>
